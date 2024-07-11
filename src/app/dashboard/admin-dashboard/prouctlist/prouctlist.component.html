@@ -1,0 +1,135 @@
+<button class="btn btn-primary mb-3" (click)="toggleAddProductForm(); focusOnAddProductForm()">Add New Product</button>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4" *ngFor="let product of products">
+            <div class="card mb-3">
+                <img [src]="product.imageUrl" class="card-img-top" alt="Product Image">
+                <div class="card-body">
+                    <p class="card-text"><strong>Name:</strong> {{ product.name }}</p>
+                    <p class="card-text"><strong>Description:</strong> {{ product.description }}</p>
+                    <p class="card-text"><strong>Price:</strong> {{ product.price | currency }}</p>
+                    <p class="card-text"><strong>Stock:</strong> {{ product.stock }}</p>
+                    <p class="card-text"><strong>Brand:</strong> {{ product.brand }}</p>
+                    <p class="card-text"><strong>Model:</strong> {{ product.model }}</p>
+                    <p class="card-text"><strong>Size:</strong> {{ product.size }}</p>
+                    <p class="card-text"><strong>Rating:</strong> {{ product.rating }}</p>
+                    <p class="card-text"><strong>Sub Category ID:</strong> {{ product.subcategoryId }}</p>
+                    <p class="card-text"><strong>Image URL:</strong> {{ product.imageUrl }}</p>
+                    <button class="btn btn-primary mr-2" (click)="editProduct(product)">Edit</button>
+                    <button class="btn btn-danger" (click)="deleteProduct(product.id)">Delete</button>
+                </div>
+            </div>
+        </div>
+
+        <div *ngFor="let product of products">
+            <div>{{ product.name }}</div>
+          </div>
+          
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <div *ngIf="editingProduct" class="edit-product-form">
+                <h5>Edit Product</h5>
+                <form *ngIf="editingProduct" (submit)="updateProduct()">
+                    <h5>Edit Product</h5>
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="editingProduct.name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea class="form-control" id="description" name="description" [(ngModel)]="editingProduct.description" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoryId">Category ID:</label>
+                        <input type="number" class="form-control" id="categoryId" name="categoryId" [(ngModel)]="editingProduct.subcategoryId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price:</label>
+                        <input type="number" class="form-control" id="price" name="price" [(ngModel)]="editingProduct.price" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="imageUrl">Image URL:</label>
+                        <input type="text" class="form-control" id="imageUrl" name="imageUrl" [(ngModel)]="editingProduct.imageUrl" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="stock">Stock:</label>
+                        <input type="number" class="form-control" id="stock" name="stock" [(ngModel)]="editingProduct.stock" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="brand">Brand:</label>
+                        <input type="text" class="form-control" id="brand" name="brand" [(ngModel)]="editingProduct.brand" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="model">Model:</label>
+                        <input type="text" class="form-control" id="model" name="model" [(ngModel)]="editingProduct.model" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="size">Size:</label>
+                        <input type="text" class="form-control" id="size" name="size" [(ngModel)]="editingProduct.size" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="rating">Rating:</label>
+                        <input type="number" class="form-control" id="rating" name="rating" [(ngModel)]="editingProduct.rating">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update Product</button>
+                </form>
+            </div>
+        </div>                  
+    <div *ngIf="showAddProductForm" class="card">
+        <div class="card-header">
+            <h5>Add New Product</h5>
+        </div>
+        <div class="card-body">
+            <form (submit)="addNewProduct()">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" [(ngModel)]="newProduct.name" required #nameInput>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea class="form-control" id="description" name="description" [(ngModel)]="newProduct.description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="categoryId">Sub Category ID:</label>
+                    <input type="number" class="form-control" id="categoryId" name="categoryId" [(ngModel)]="newProduct.subcategoryId" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="number" class="form-control" id="price" name="price" [(ngModel)]="newProduct.price" required>
+                </div>
+                <div class="form-group">
+                    <label for="imageUrl">Image URL:</label>
+                    <input type="text" class="form-control" id="imageUrl" name="imageUrl" [(ngModel)]="newProduct.imageUrl" required>
+                </div>
+                <div class="form-group">
+                    <label for="stock">Stock:</label>
+                    <input type="number" class="form-control" id="stock" name="stock" [(ngModel)]="newProduct.stock" required>
+                </div>
+                <div class="form-group">
+                    <label for="brand">Brand:</label>
+                    <input type="text" class="form-control" id="brand" name="brand" [(ngModel)]="newProduct.brand" required>
+                </div>
+                <div class="form-group">
+                    <label for="model">Model:</label>
+                    <input type="text" class="form-control" id="model" name="model" [(ngModel)]="newProduct.model" required>
+                </div>
+                <div class="form-group">
+                    <label for="size">Size:</label>
+                    <input type="text" class="form-control" id="size" name="size" [(ngModel)]="newProduct.size" required>
+                </div>
+                <div class="form-group">
+                    <label for="rating">Rating:</label>
+                    <input type="number" class="form-control" id="rating" name="rating" [(ngModel)]="newProduct.rating">
+                </div>
+                <button type="submit" class="btn btn-primary">Add Product</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+
+
